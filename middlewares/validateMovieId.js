@@ -2,7 +2,7 @@ const { celebrate, Joi } = require('celebrate');
 
 const validateMovieId = celebrate({
   params: Joi.object().keys({
-    MovieId: Joi.string().length(24).hex().required(),
+    _id: Joi.string().length(24).hex().required(),
   }),
 });
 

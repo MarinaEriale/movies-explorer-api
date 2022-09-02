@@ -56,7 +56,7 @@ module.exports.createMovie = (req, res, next) => {
 
 exports.deleteMovie = (req, res, next) => {
   movieModel
-    .findById(req.params.movieId)
+    .findById(req.params._id)
     .then((movie) => {
       if (movie === null) {
         return next(new NotFoundError('Карточка не была найдена'));

@@ -14,6 +14,6 @@ movieRouter.get('/movies', getMovies);
 
 movieRouter.post('/movies', express.json(), validateMovie, createMovie);
 
-movieRouter.delete('/movies/:movieId', validateMovieId, deleteMovie);
+movieRouter.delete('/movies/:_id', validateMovieId, deleteMovie);
 
 module.exports = movieRouter;
