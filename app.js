@@ -1,7 +1,7 @@
 require('dotenv').config();
 const express = require('express');
 const { default: mongoose } = require('mongoose');
-const crypto = require('crypto');
+// const crypto = require('crypto');
 const cors = require('cors');
 const { errors } = require('celebrate');
 
@@ -22,7 +22,7 @@ const app = express();
 
 app.use(cors());
 
-mongoose.connect('mongodb://localhost:27017/bitfilmsdb', {
+mongoose.connect('mongodb://localhost:27017/moviesdb', {
   useNewUrlParser: true,
   useUnifiedTopology: true,
 });
