@@ -3,7 +3,6 @@ const jwt = require('jsonwebtoken');
 const userModel = require('../models/user');
 const IncorrectQueryError = require('../errors/incorrect-query-err');
 const NotFoundError = require('../errors/not-found-err');
-const ErrorDefault = require('../errors/error-default');
 const AlreadyExistsError = require('../errors/already-exists-err');
 
 const { NODE_ENV, JWT_SECRET } = process.env;
@@ -22,12 +21,7 @@ exports.getMeEndpoint = (req, res, next) => {
         email: user.email,
       });
     })
-    .catch((err) => {
-      if (err.name === 'CastError') {
-        return next(new IncorrectQueryError('Передан не валидный id'));
-      }
-      return next(new ErrorDefault('Ошибка сервера'));
-    });
+    .catch(next);
 };
 
 exports.updateProfile = (req, res, next) => {
@@ -54,7 +48,10 @@ exports.updateProfile = (req, res, next) => {
       if (err.name === 'ValidationError') {
         return next(new IncorrectQueryError('Переданы некорректные данные'));
       }
-      return next(new ErrorDefault('Ошибка сервера'));
+      if (err.code === 11000) {
+        return next(new AlreadyExistsError('Пользователь с такой почтой уже существует'));
+      }
+      return next(err);
     });
 };
 
@@ -84,7 +81,7 @@ exports.createUser = (req, res, next) => {
         if (err.code === 11000) {
           return next(new AlreadyExistsError('Пользователь уже существует'));
         }
-        return next(new ErrorDefault('Ошибка сервера'));
+        return next(err);
       }));
 };
 

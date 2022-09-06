@@ -10,10 +10,10 @@ const {
   deleteMovie,
 } = require('../controllers/movies');
 
-movieRouter.get('/movies', getMovies);
+movieRouter.get('', getMovies);
 
-movieRouter.post('/movies', express.json(), validateMovie, createMovie);
+movieRouter.post('', express.json(), validateMovie, createMovie);
 
-movieRouter.delete('/movies/:_id', validateMovieId, deleteMovie);
+movieRouter.delete('/:_id', validateMovieId, deleteMovie);
 
 module.exports = movieRouter;

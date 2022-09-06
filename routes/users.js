@@ -5,10 +5,10 @@ const {
   getMeEndpoint,
 } = require('../controllers/users');
 
-const { validateUpdatedUser } = require('../middlewares/validateUpdatedData');
+const validateUpdatedUser = require('../middlewares/validateUpdatedData');
 
-userRouter.get('/users/me', getMeEndpoint);
+userRouter.get('/me', getMeEndpoint);
 
-userRouter.patch('/users/me', express.json(), validateUpdatedUser, updateProfile);
+userRouter.patch('/me', express.json(), validateUpdatedUser, updateProfile);
 
 module.exports = userRouter;

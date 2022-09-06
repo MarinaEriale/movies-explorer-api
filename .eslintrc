@@ -7,13 +7,6 @@
       {
         "allow": ["_id"]
       }
-    ],
-    "no-unused-vars": [
-      "warn",
-      {
-        "vars": "all",
-        "args": "none"
-      }
     ]
   }
 }
