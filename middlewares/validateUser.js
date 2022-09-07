@@ -1,6 +1,6 @@
 const { celebrate, Joi } = require('celebrate');
 
-const validateUser = celebrate({
+const validateUserSignup = celebrate({
   body: Joi.object().keys({
     email: Joi.string().required().email(),
     password: Joi.string().required(),
@@ -8,4 +8,14 @@ const validateUser = celebrate({
   }),
 });
 
-module.exports = validateUser;
+const validateUserSignin = celebrate({
+  body: Joi.object().keys({
+    email: Joi.string().required().email(),
+    password: Joi.string().required(),
+  }),
+});
+
+module.exports = {
+  validateUserSignup,
+  validateUserSignin,
+};
