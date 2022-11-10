@@ -19,6 +19,7 @@ exports.getMeEndpoint = (req, res, next) => {
       return res.send({
         name: user.name,
         email: user.email,
+        _id: user._id,
       });
     })
     .catch(next);
